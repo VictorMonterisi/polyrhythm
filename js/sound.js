@@ -1,4 +1,13 @@
-const audioCtx = new (window.AudioContext || window.webkitAudioContext)()
+document.addEventListener("click", () => {
+    if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+    if (audioCtx.state === "suspended") {
+        audioCtx.resume();
+    }
+    playSound();
+});
+
 
 const playSound = (frequency = 220, duration = 2) => {
     const osc = audioCtx.createOscillator()
